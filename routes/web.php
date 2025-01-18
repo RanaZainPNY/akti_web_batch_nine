@@ -1,25 +1,23 @@
 <?php
 
 use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Room;
 
-Route::get("/", [WebsiteController::class, 'indexPage'])->name('mainPage');
-Route::get('/aboutPage', [WebsiteController::class, 'aboutPage'])->name('about');
-Route::get('/contactPage', [WebsiteController::class, 'contactPage'])->name('contact');
-Route::get('/galleryPage', [WebsiteController::class, 'galleryPage'])->name('gallery');
-Route::get('/blogPage', [WebsiteController::class, 'blogPage'])->name('blog');
-Route::get('/roomPage', [WebsiteController::class, 'roomPage'])->name('room');
+Route::get('/web/index', [WebsiteController::class, 'webIndexPage'])->name('web-index');
+Route::get('/web/master', [WebsiteController::class, 'webMasterPage'])->name('web-master');
+Route::get('/web/shop/{brand_id?}', [WebsiteController::class, 'shopPage'])->name('web-shop');
 
-Route::get('/addroom', function () {
-    $new_room = new Room();
-    $new_room->room_number = 105;
-    $new_room->description = " this is a single bed luxury room";
-    $new_room->category = "4 star";
-    $new_room->save();
-    echo "room added successfully";
-    echo "<br>";
+Route::get('/web/checkout', [WebsiteController::class, 'webCheckoutPage'])->name('web-checkout');
+Route::post('/web/placeorder', [WebsiteController::class, 'placeorder'])->name('web-place-order');
 
-    $rooms = Room::all();
-    dd($rooms);
-});
+
+
+
+
+Route::get('/admin/index', [WebsiteController::class, 'adminIndexPage'])->name('admin-index');
+Route::get('/admin/master', [WebsiteController::class, 'adminMasterPage'])->name('admin-master');
+
+Route::get('admin/products/create', [ProductController::class, 'create'])->name('admin-product-create');
+Route::post('admin/products/store', [ProductController::class, 'store'])->name('admin-products-store');
