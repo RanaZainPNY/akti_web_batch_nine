@@ -45,11 +45,9 @@
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->created_at }}</td>
                     <td>
-                        {{-- <a href="{{ route('admin-products-edit', $product->id) }}" --}}
-                        <a href="', $product->id) }}"
+                        <a href="{{ route('admin-products-edit', $product->id) }}"
                             class="btn btn-success btn-sm">Edit</a>
-                        {{-- <a href="{{ route('admin-products-delete', $product->id) }}" --}}
-                        <a href="', $product->id) }}"
+                        <a href="{{ route('admin-products-delete', $product->id) }}"
                             class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
